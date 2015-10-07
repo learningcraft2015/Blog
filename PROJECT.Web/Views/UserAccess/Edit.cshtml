@@ -1,0 +1,101 @@
+﻿@model PROJECT.Core.Models.ViewModels.UserAccessViewModel
+@using PROJECT.Core.Helpers;
+
+    @{
+        ViewBag.Title = "User Access Edit";
+
+    }
+
+
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2><i class="glyphicon glyphicon-user"></i>User Access Edit</h2>
+
+                </div>
+                <div class="box-content">
+                    <!-- put your content here -->
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                            <div class="form-group required">
+                                @Html.LabelFor(model => model.ParentId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+
+                                    @Html.EnumDropDownListFor(model => model.ParentId, "---Select---", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ParentId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                @Html.LabelFor(model => model.UserAccessTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.UserAccessTitle, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.UserAccessTitle, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group required">
+                                @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group required">
+                                @Html.LabelFor(model => model.CssClass, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.CssClass, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.CssClass, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group required">
+                                @Html.LabelFor(model => model.SortOrder, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.SortOrder, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.SortOrder, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group required">
+                                @Html.LabelFor(model => model.UserAccessStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EnumDropDownListFor(model => model.UserAccessStatus, "---Select---", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.UserAccessStatus, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Save" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    @if (ApplicationHelpers.CheckRoleUserAccess(ActionUserAccessEnum.Index))
+                    {
+                        <div>
+                            <a class="btn btn-success" href="@Url.Action("Index")">
+                                <i class="glyphicon glyphicon-list-alt">
+                                </i>
+                                Back to List
+                            </a>
+
+                            @*@Html.ActionLink("Back to List", "Index")*@
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>

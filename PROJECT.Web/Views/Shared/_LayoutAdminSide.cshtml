@@ -1,0 +1,135 @@
+﻿@using PROJECT.Core.Models.ViewModels
+@using PROJECT.Core.Helpers
+@using MvcFlashMessages;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Admin Side Kensho Lab</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/AdminSide/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    @if (ApplicationHelpers.IsAuthenticatedByRole(RoleUserDefinedEnum.Admin))
+    {
+
+
+    <!-- topbar starts -->
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-inner">
+                <button type="button" class="navbar-toggle pull-left animated flip">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    @*<img alt="Kensho Lab" src=""  class="hidden-xs" />*@
+                    <span>Kensho Lab</span>
+                </a>
+
+
+                <ul class="collapse navbar-collapse nav navbar-nav top-menu pull-right">
+
+
+                    @Html.Partial("_LoginPartialAdminSide")
+
+
+                </ul>
+
+            </div>
+        </div>
+    <!-- topbar ends -->
+
+    }
+
+
+    <div class="ch-container">
+        @Html.RenderFlash()
+        <div class="row">
+            @if (ApplicationHelpers.IsAuthenticatedByRole(RoleUserDefinedEnum.Admin))
+            {
+            <!-- left menu starts -->
+                <div class="col-sm-2 col-lg-2">
+                    <div class="sidebar-nav">
+                        <div class="nav-canvas">
+                            <div class="nav-sm nav nav-stacked">
+                            </div>
+                            @Html.Partial("_PartialAdminSidebar")
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+            <!--/span-->
+            <!-- left menu ends -->
+            <noscript>
+                <div class="alert alert-block col-md-12">
+                    <h4 class="alert-heading">Warning!</h4>
+                    <p>
+                        You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>
+                        enabled to use this site.
+                    </p>
+                </div>
+            </noscript>
+            @if (ApplicationHelpers.IsAuthenticatedByRole(RoleUserDefinedEnum.Admin))
+            {
+                <div id="content" class="col-lg-10 col-sm-10">
+
+                    <!-- content starts -->
+                    @Html.Raw(Html.BuildBreadcrumbNavigation())
+                    @RenderBody()
+                    <!--/row-->
+                    <!-- content ends -->
+                </div>
+
+            }
+            else
+            {
+                @RenderBody()
+            }
+            <!--/#content.col-md-0-->
+
+
+
+
+
+        </div><!--/fluid-row-->
+        <!-- Ad, you can remove it -->
+        <!-- Ad ends -->
+        @if (ApplicationHelpers.IsAuthenticatedByRole(RoleUserDefinedEnum.Admin))
+        {
+            <hr />
+            <footer class="row">
+                <p class="col-md-9 col-sm-9 col-xs-12 copyright">
+                    &copy; <a href="http://kensho.in" target="_blank">
+                        Kensho Lab
+                    </a> @DateTime.Now.Year
+
+
+                </p>
+                <p class="col-md-3 col-sm-3 col-xs-12 powered-by">
+                    Powered by: <a href="http://yadaindia.com">yada</a>
+                </p>
+            </footer>
+
+        }
+    </div><!--/.fluid-container-->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/AdminSide/js")
+    @RenderSection("Css", required: false)
+    @RenderSection("scripts", required: false)
+
+
+
+
+</body>
+</html>

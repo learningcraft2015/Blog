@@ -1,0 +1,95 @@
+﻿@model IEnumerable<PROJECT.Core.Models.ViewModels.RoleViewModel>
+@using PROJECT.Core.Helpers;
+@{
+    ViewBag.Title = "Role List";
+
+}
+
+
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>Role List</h2>
+
+            </div>
+            <div class="box-content">
+                <!-- put your content here -->
+                @if (ApplicationHelpers.CheckRoleUserAccess(ActionUserAccessEnum.AdminOnly))
+                {
+                    
+                    <div class="row">
+                        <div class="box col-md-12">
+
+                            <a class="btn btn-primary" href="@Url.Action("Create")">
+                                <i class="glyphicon glyphicon-edit icon-white"></i>
+                                Create New
+                            </a>
+                            </div>
+                        </div>
+                }
+               
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.RoleName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ShortName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SortOrder)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.RoleStatus)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RoleName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ShortName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SortOrder)
+                                </td>
+                                <td>
+
+
+                                    @Enum.GetName(typeof(StatusEnum), item.RoleStatus)
+                                </td>
+                                <td>
+                                    @if (ApplicationHelpers.CheckRoleUserAccess(ActionUserAccessEnum.AdminOnly) && item.RoleId !=1)
+                                    {
+
+
+                                        <a class="btn btn-info" href="@Url.Action("Edit", new {  id=item.RoleId })">
+                                            <i class="glyphicon glyphicon-edit icon-white"></i>
+                                            Edit
+                                        </a>
+
+
+                                    }
+
+                                    @*@Html.ActionLink("Delete", "Delete", new { id = item.RoleId })*@
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

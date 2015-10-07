@@ -1,0 +1,104 @@
+﻿@model PROJECT.Core.Models.ViewModels.RegistrationViewModel
+
+
+@using PROJECT.Core.Helpers
+
+@{
+    ViewBag.Title = "My Profile";
+
+}
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>My Profile</h2>
+
+            </div>
+            <div class="box-content">
+                <!-- put your content here -->
+
+                <div>
+
+
+                    <dl class="dl-horizontal">
+
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.FirstName)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.LastName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.LastName)
+                        </dd>
+                        
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.MobileNumber)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.MobileNumber)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Gender)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Gender)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.DateOfBirth)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.DateOfBirth)
+                        </dd>
+
+
+
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Location)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Location)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.PhotoName)
+                        </dt>
+
+                        <dd>
+                            @{
+
+                string fullFilePath = string.Empty;
+                fullFilePath = (string.IsNullOrEmpty(Model.PhotoName)) ? "holder.js/200x200" : Url.Content(ApplicationConstant.UPLOADED_USER_PHOTO_PATH + Model.PhotoName);
+                            }
+
+
+                            <img src="@fullFilePath" width="300" height="300" alt="No Image" class="img-thumbnail" />
+
+                        </dd>
+
+
+
+
+
+
+                    </dl>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

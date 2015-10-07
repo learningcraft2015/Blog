@@ -1,0 +1,12 @@
+@using PROJECT.Core.Models.ViewModels
+@using PROJECT.Core.Helpers
+@using MvcFlashMessages;
+
+
+  @Styles.Render("~/Content/UserSide/css")
+
+
+ @Html.Partial("_LoginPartialUserSide")
+
+
+  @Scripts.Render("~/bundles/UserSide/js")

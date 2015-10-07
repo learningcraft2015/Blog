@@ -1,0 +1,24 @@
+﻿@using PROJECT.Core.Helpers
+@using PROJECT.Core.Models.ViewModels
+
+
+<ul class="nav nav-pills nav-stacked main-menu">
+    <li class="nav-header">Master</li>
+    @if (@SessionWrapper.UserAccount.RoleId == RoleUserDefinedEnum.Admin.GetHashCode())
+    {
+        
+    
+    <li><a class="ajax-link" href="@Url.Action("Index","Role")"><i class="glyphicon glyphicon-user"></i> &nbsp;<span>Manage Roles</span></a></li>
+    <li><a class="ajax-link" href="@Url.Action("Index", "UserAccess")"><i class="glyphicon glyphicon-link"></i>&nbsp;<span>Manage UserAccess</span></a></li>
+    <li><a class="ajax-link" href="@Url.Action("Index", "RoleUserAccessMap")"><i class="glyphicon glyphicon-check"></i>&nbsp;<span>Manage UserAccess Role</span></a></li>
+    }
+    @Html.Raw(MenuHelpers.GetMenuMaster(SessionWrapper.UserAccount.RoleId))
+    
+  
+    <li class="nav-header hidden-md">Main</li>
+    @Html.Raw(MenuHelpers.GetMenuMain(SessionWrapper.UserAccount.RoleId))
+  
+</ul>
+
+   
+  

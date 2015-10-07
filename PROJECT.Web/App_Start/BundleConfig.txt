@@ -1,0 +1,58 @@
+  #region UserSideExternalFiles
+            bundles.Add(new StyleBundle("~/Content/UserSide/css").Include(
+                 "~/Content/SiteUserSide.css"
+
+                   ));
+
+            bundles.Add(new ScriptBundle("~/bundles/UserSide/js").Include(
+                "~/Scripts/SiteUserSide.js"
+
+                    ));
+            #endregion
+
+            #region AdminSideExternalFiles
+
+            bundles.Add(new StyleBundle("~/Content/AdminSide/css").Include(
+
+
+                  "~/Content/SiteAdminSide.css",
+                //charisma template
+                            "~/Content/animate.min.css",
+                  "~/Content/bootstrap-cerulean.min.css",
+                //"~/Content/bootstrap-cyborg.min.css",
+                //"~/Content/bootstrap-darkly.min.css",
+                //"~/Content/bootstrap-lumen.min.css",
+                // "~/Content/bootstrap-simplex.min.css",
+                //"~/Content/bootstrap-slate.min.css",
+                //"~/Content/bootstrap-spacelab.min.css",
+                //"~/Content/bootstrap-united.min.css",
+                            "~/Content/charisma-app.css",
+                            "~/Content/elfinder.min.css",
+                            "~/Content/elfinder.theme.css",
+                            "~/Content/jquery.iphone.toggle.css",
+                            "~/Content/jquery.noty.css",
+                            "~/Content/jquery-ui-1.8.21.custom.css",
+                            "~/Content/noty_theme_default.css",
+                            "~/Content/uploadify.css"
+                //charisma template
+
+                    ));
+
+            bundles.Add(new ScriptBundle("~/bundles/AdminSide/js").Include(
+
+                "~/Scripts/SiteAdminSide.js",
+                //charisma template
+                            "~/Scripts/charisma.js",
+                            "~/Scripts/init-chart.js",
+                            "~/Scripts/jquery.autogrow-textarea.js",
+                            "~/Scripts/jquery.cookie.js",
+                            "~/Scripts/jquery.dataTables.min.js",
+                            "~/Scripts/jquery.history.js",
+                            "~/Scripts/jquery.iphone.toggle.js",
+                            "~/Scripts/jquery.noty.js",
+                            "~/Scripts/jquery.raty.min.js",
+                            "~/Scripts/jquery.uploadify-3.1.min.js"
+                //charisma template
+                    ));
+
+            #endregion

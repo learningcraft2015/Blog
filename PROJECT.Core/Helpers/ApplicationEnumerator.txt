@@ -1,0 +1,140 @@
+ #region UserAccessRegion
+
+    public enum UserAccessControllerEnum
+    {
+        Role = 1,
+        UserAccess = 2,
+        RoleUserAccessMap = 3
+    }
+
+
+    public enum RoleUserDefinedEnum
+    {
+        Admin = 1,
+        User = 2
+
+    }
+
+    public enum LoginResultEnum
+    {
+        Success = 1,
+        Failure = 2,
+        Unauthorized = 3
+    }
+
+    /// <summary>
+    /// Flags for user operations
+    /// </summary>
+    /// 
+    public enum RegistrationFlags
+    {
+        SelectByID = 1,
+        SelectAll = 2,
+        DeleteByID = 3,
+        UpdateByID = 4
+    }
+    public enum ActionUserAccessEnum
+    {
+        Default = 0,
+        Index = 1,
+        Details = 2,
+        Create = 3,
+        Edit = 4,
+        Delete = 5,
+        AdminOnly = 6
+
+
+    }
+    public enum StatusEnum
+    {
+        InActive = 1,
+        Active = 2
+    }
+    public enum UserAccessParentIdEnum
+    {
+        [Display(Name = "Master Forms")]
+        MasterForms = 0,
+        [Display(Name = "Main Forms")]
+        MainForms = 1,
+
+    }
+
+    public enum RoleFlags
+    {
+        SelectByID = 1,
+        SelectAll = 2,
+        DeleteByID = 3,
+        UpdateByID = 4,
+        SelectAllExcludeAdmin = 5,
+
+
+    }
+
+    public enum RoleUserAccessMapFlags
+    {
+        SelectByID = 1,
+        SelectAll = 2,
+        DeleteByID = 3,
+        UpdateByID = 4,
+        SelectByRoleId = 5,
+
+
+
+    }
+
+    public enum UserAccessFlags
+    {
+        SelectByID = 1,
+        SelectAll = 2,
+        DeleteByID = 3,
+        UpdateByID = 4,
+        SelectAllByParentId = 5,
+        SelectAllMenuByRoleId = 6,
+        SelectPermissionByUrlRoleId = 7,
+
+
+    }
+
+
+
+    public enum UserFlags
+    {
+        SelectByID = 1,
+        SelectAll = 2,
+        DeleteByID = 3,
+        UpdateByID = 4,
+        UpdateStatusByID = 5,
+        UserSignIn = 6,
+        UpdatePasswordByID = 7,
+        UpdateStatusRoleByID = 8
+
+    }
+
+
+    public enum ResultFlags
+    {
+
+        OldPasswordMismatch = -2,
+        Duplicate = -1,
+        Failure = 0,
+        Success = 1
+
+
+    }
+
+    public enum GenderEnum
+    {
+        Male = 1,
+        Female = 2,
+
+    }
+
+ public static class ApplicationConstant
+    {
+
+        public static string UPLOADED_USER_PHOTO_PATH = "~/Uploads/Users/";
+
+
+    }
+
+    #endregion

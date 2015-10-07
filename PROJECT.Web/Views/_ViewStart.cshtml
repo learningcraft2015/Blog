@@ -1,0 +1,53 @@
+﻿@using PROJECT.Core.Models.ViewModels
+@using PROJECT.Core.Helpers
+@{
+    
+    string layout = "~/Views/Shared/_LayoutUserSide.cshtml";
+   
+    string controller = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString();
+
+
+    /* if (controller.Equals("Admin",StringComparison.InvariantCultureIgnoreCase))
+    {
+        layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        layout = "~/Views/Shared/_LayoutUserSide.cshtml";
+    }
+    
+    */
+    
+    if (HttpContext.Current.User.Identity.IsAuthenticated && HttpContext.Current.User.Identity.AuthenticationType == "Forms")
+    {
+
+        if (SessionWrapper.UserAccount != null)
+        {
+            //check admin user
+            if (SessionWrapper.UserAccount.RoleId == RoleUserDefinedEnum.Admin.GetHashCode())
+            {
+                layout = "~/Views/Shared/_LayoutAdminSide.cshtml";
+            }
+            else
+            {
+                layout = "~/Views/Shared/_LayoutUserSide.cshtml";
+            }
+        }
+        if (controller.Equals("Admin", StringComparison.InvariantCultureIgnoreCase))
+        {
+            layout = "~/Views/Shared/_LayoutAdminSide.cshtml";
+        }
+    }
+    else
+    {
+        if (controller.Equals("Admin", StringComparison.InvariantCultureIgnoreCase))
+        {
+            layout = "~/Views/Shared/_LayoutAdminSide.cshtml";
+        }
+        
+       
+
+    }
+
+    Layout = layout;
+}

@@ -1,0 +1,217 @@
+﻿@model PROJECT.Core.Models.ViewModels.RoleUserAccessMapViewModel
+@using PROJECT.Core.Helpers
+@{
+    ViewBag.Title = "User Access Roll Map";
+
+}
+
+
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>User Access Role Map</h2>
+
+            </div>
+            <div class="box-content">
+                <!-- put your content here -->
+
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <a class="btn btn-primary" href="@Url.Action("Create", "UserAccess")" role="button">New User Access</a>
+                    </div>
+
+                </div>
+                <p>
+
+                    @using (Html.BeginForm("Index", "RoleUserAccessMap", FormMethod.Get, new { id = "RoleUserAccessMapSearchForm" }))
+                    {
+                        <div class="form-horizontal">
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.RId, Model.RoleViewModelList, "---Select---", new { @class = "form-control", onchange = "$('#RoleUserAccessMapSearchForm').submit();" })
+                                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                                    @*@Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })*@
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                </p>
+                @using (Html.BeginForm("Index", "RoleUserAccessMap", FormMethod.Post, new { id = "RoleUserAccessMapForm" }))
+                {
+
+                    <input type="hidden" name="ListRoleUserAccessMap.Index" value="0" />
+                    @Html.HiddenFor(model => model.RId)
+
+                    <div class="form-horizontal">
+
+
+                        @*@Html.ValidationSummary(false, "", new { @class = "text-danger" })*@
+                        @*@Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })*@
+                        <div class="form-group">
+                            <div class="col-md-offset-9 col-md-3">
+                                <input type="submit" value="Save User Access Permission" class="btn btn-success" />
+                            </div>
+                        </div>
+                        <table class="table table-hover">
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+
+                                        User Access
+
+                                    </th>
+                                    <th>Add</th>
+                                    <th>Edit</th>
+                                    <th>View</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+
+
+
+
+                                @for (int i = 0; i < Model.RoleUserAccessMapList.Count; i++)
+                                {
+
+
+                                    <tr>
+                                        <td>
+                                            @Model.RoleUserAccessMapList[i].UserAccessTitle
+
+
+                                            <input type="hidden" name="RoleUserAccessMapList[@(i)].UserAccessId" value="@Model.RoleUserAccessMapList[i].UserAccessId" />
+
+                                            @if (Model.RId > 0)
+                                            {
+
+
+                                                <input type="hidden" name="RoleUserAccessMapList[@(i)].RoleId" value="@Model.RId.ToString()" />
+                                            }
+                                            else
+                                            {
+                                                <input type="hidden" name="RoleUserAccessMapList[@(i)].RoleId" value="@Model.RoleUserAccessMapList[i].RoleId" />
+                                            }
+
+
+
+                                        </td>
+                                        <td>
+                                            <div class="checkbox">
+                                                <label>
+                                                    @*@if (Model.RoleUserAccessMapList[i].UserAccessId == UserAccessControllerEnum.Role.GetHashCode() ||
+                                                            Model.RoleUserAccessMapList[i].UserAccessId == UserAccessControllerEnum.UserAccess.GetHashCode() ||
+                                                             Model.RoleUserAccessMapList[i].UserAccessId == UserAccessControllerEnum.RoleUserAccessMap.GetHashCode())
+                                                        {
+
+                                                            @Html.CheckBox("RoleUserAccessMapList[" + i.ToString() + "].AddPermission", Model.RoleUserAccessMapList[i].AddPermission, new { @disabled = "disabled" })
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Hidden("RoleUserAccessMapList[" + i.ToString() + "].AddPermission", Model.RoleUserAccessMapList[i].AddPermission)
+                                                        }*@
+
+                                                    @Html.CheckBox("RoleUserAccessMapList[" + i.ToString() + "].AddPermission", Model.RoleUserAccessMapList[i].AddPermission)
+
+
+
+
+                                                </label>
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <div class="checkbox">
+                                                <label>
+                                                    @*@if (Model.RoleUserAccessMapList[i].UserAccessId == UserAccessControllerEnum.Role.GetHashCode() ||
+                                                            Model.RoleUserAccessMapList[i].UserAccessId == UserAccessControllerEnum.UserAccess.GetHashCode() ||
+                                                             Model.RoleUserAccessMapList[i].UserAccessId == UserAccessControllerEnum.RoleUserAccessMap.GetHashCode())
+                                                        {
+
+                                                            @Html.CheckBox("RoleUserAccessMapList[" + i.ToString() + "].EditPermission", Model.RoleUserAccessMapList[i].EditPermission, new { @disabled = "disabled" })
+                                                        }
+                                                        else
+                                                        {
+                                                              @Html.Hidden("RoleUserAccessMapList[" + i.ToString() + "].EditPermission", Model.RoleUserAccessMapList[i].EditPermission)
+
+                                                        }*@
+                                                    @Html.CheckBox("RoleUserAccessMapList[" + i.ToString() + "].EditPermission", Model.RoleUserAccessMapList[i].EditPermission)
+
+
+                                                </label>
+                                            </div>
+
+
+                                        </td>
+                                        <td>
+                                            <div class="checkbox">
+                                                <label>
+                                                    @*@if (Model.RoleUserAccessMapList[i].UserAccessId == UserAccessControllerEnum.Role.GetHashCode() ||
+                                                            Model.RoleUserAccessMapList[i].UserAccessId == UserAccessControllerEnum.UserAccess.GetHashCode() ||
+                                                             Model.RoleUserAccessMapList[i].UserAccessId == UserAccessControllerEnum.RoleUserAccessMap.GetHashCode())
+                                                        {
+
+                                                            @Html.CheckBox("RoleUserAccessMapList[" + i.ToString() + "].ViewPermission", Model.RoleUserAccessMapList[i].ViewPermission, new { @disabled = "disabled" })
+                                                        }
+                                                        else
+                                                        {
+                                                               @Html.Hidden("RoleUserAccessMapList[" + i.ToString() + "].ViewPermission", Model.RoleUserAccessMapList[i].ViewPermission)
+
+                                                        }*@
+                                                    @Html.CheckBox("RoleUserAccessMapList[" + i.ToString() + "].ViewPermission", Model.RoleUserAccessMapList[i].ViewPermission)
+
+                                                </label>
+                                            </div>
+
+
+                                        </td>
+                                        <td>
+                                            <div class="checkbox">
+                                                <label>
+
+
+                                                    @*@if (Model.RoleUserAccessMapList[i].UserAccessId == UserAccessControllerEnum.Role.GetHashCode() ||
+                                                            Model.RoleUserAccessMapList[i].UserAccessId == UserAccessControllerEnum.UserAccess.GetHashCode() ||
+                                                             Model.RoleUserAccessMapList[i].UserAccessId == UserAccessControllerEnum.RoleUserAccessMap.GetHashCode())
+                                                        {
+
+
+
+                                                            @Html.CheckBox("RoleUserAccessMapList[" + i.ToString() + "].DeletePermission", Model.RoleUserAccessMapList[i].DeletePermission, new { @disabled = "disabled" })
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Hidden("RoleUserAccessMapList[" + i.ToString() + "].DeletePermission", Model.RoleUserAccessMapList[i].DeletePermission)
+
+                                                        }*@
+                                                    @Html.CheckBox("RoleUserAccessMapList[" + i.ToString() + "].DeletePermission", Model.RoleUserAccessMapList[i].DeletePermission)
+
+                                                </label>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

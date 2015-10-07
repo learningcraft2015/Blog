@@ -1,0 +1,75 @@
+﻿@model PROJECT.Core.Models.ViewModels.UserLoginViewModel
+
+@{
+    ViewBag.Title = "Admin Login";
+
+}
+
+@section Css{
+    <style type="text/css">
+        div.validation-summary-errors > ul > li {
+            list-style-type: none;
+        }
+    </style>
+}
+
+
+<div class="row">
+
+
+    <div class="row">
+        <div class="col-md-12 center login-header">
+            <h2>Welcome to Admin Login</h2>
+        </div>
+        <!--/span-->
+    </div>
+    <!--/row-->
+    <div class="row">
+        <div class="well col-md-5 center login-box">
+            <div class="alert alert-info">
+                Please login with your User Email and Password.
+            </div>
+            @using (Html.BeginForm())
+            {
+            <div class="form-horizontal">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+
+
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
+
+                    @Html.EditorFor(model => model.UserEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "user email", style = "max-width:100%" } })
+
+                </div>
+                <div class="clearfix"></div><br>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "password", style = "max-width:100%" } })
+
+                </div>
+                <div class="clearfix"></div>
+
+                <p class="center col-md-5">
+
+                    <input type="submit" value="Login" class="btn btn-primary" />
+
+
+                </p>
+            </div>
+            }
+        </div>
+        <!--/span-->
+    </div>
+    <!--/row-->
+
+</div>
+
+
+
+<div class="clearfix"></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

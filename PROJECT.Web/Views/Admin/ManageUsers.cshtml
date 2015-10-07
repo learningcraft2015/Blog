@@ -1,0 +1,73 @@
+﻿@model IEnumerable<PROJECT.Core.Models.ViewModels.UserViewModel>
+@using PROJECT.Core.Helpers;
+@{
+    ViewBag.Title = "Manage Users";
+
+}
+
+
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>Manage Users</h2>
+
+            </div>
+            <div class="box-content">
+                <!-- put your content here -->
+
+                <table class="table table-hover">
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.RoleName)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserEmail)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserStatus)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RoleName)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserEmail)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserStatus)
+                            </td>
+                            <td>
+                                @if (ApplicationHelpers.CheckRoleUserAccess(ActionUserAccessEnum.AdminOnly) && item.RoleId != 1)
+                                {
+
+
+                                    <a class="btn btn-info" href="@Url.Action("ManageUserEdit", new {  id=item.UserId })">
+                                        <i class="glyphicon glyphicon-edit icon-white"></i>
+                                        Edit
+                                    </a>
+
+
+                                }
+                               
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
